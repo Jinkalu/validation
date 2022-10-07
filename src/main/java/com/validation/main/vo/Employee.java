@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Data
 @Builder
@@ -14,7 +15,8 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 public class Employee {
     @NotEmpty(message = "name can not be empty")
+    @Pattern(message = "invalid format",regexp = "^[a-zA-Z(\\d)_.+-]+@(\\d)*$")
     private String name;
-    @Email(message = "invalid email",regexp = ".*.@...*")
+    @Email(message = "invalid email",regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z(\\d)-]+\\.[a-zA-Z(\\d)-.]+$")
     private String email;
 }
