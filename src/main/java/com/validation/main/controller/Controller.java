@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -15,11 +16,12 @@ import java.util.List;
 
 //@Validated
 @RestController
+@RequestMapping("/emp/")
 @RequiredArgsConstructor
 public class Controller {
     private final Servicee servicee;
 
-    @PostMapping("/add")
+    @PostMapping("add")
   public ResponseEntity<ResponseVO> setEmployee(@RequestBody @Valid  Employee employee){
       return ResponseEntity.accepted().body(ResponseVO.builder()
               .status("ACCEPTED")
