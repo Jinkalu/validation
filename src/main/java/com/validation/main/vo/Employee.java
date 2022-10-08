@@ -14,9 +14,11 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
-    @NotEmpty(message = "name can not be empty")
-    @Pattern(message = "invalid format",regexp = "^[a-zA-Z(\\d)_.+-]+@(\\d)*$")
+    @NotEmpty
+    @Pattern(message = "invalid format : format must be name@accountNumber ",
+            regexp = "^[a-zA-Z(\\d)_.+-]+@(\\d)*$")
     private String name;
-    @Email(message = "invalid email",regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z(\\d)-]+\\.[a-zA-Z(\\d)-.]+$")
+    @Email(message = "invalid email",
+            regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z(\\d)-]+\\.[a-zA-Z(\\d)-.]+$")
     private String email;
 }
