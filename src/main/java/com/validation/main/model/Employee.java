@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -15,6 +13,8 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Employee {
     @Id
+    @SequenceGenerator(name = "id_seq",allocationSize = 1,sequenceName = "id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "id_seq")
     private Integer id;
     @Column(name = "name")
     private String name;

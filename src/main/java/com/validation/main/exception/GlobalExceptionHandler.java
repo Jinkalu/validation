@@ -1,5 +1,6 @@
 package com.validation.main.exception;
 
+import com.validation.main.vo.ApiException;
 import com.validation.main.vo.ErrorVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +25,12 @@ public class GlobalExceptionHandler {
                                 .build())
                 .collect(Collectors.toList());
         return new ResponseEntity<>(errors.get(0), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(value = {ApiExceptionHandler.class})
+    public ResponseEntity<Object> handleApiRequestException(ApiExceptionHandler e){
+        ApiException apiException= ApiException.builder()
+                .message(List.of(e.getMessage()))
+                .build();
+        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
 }

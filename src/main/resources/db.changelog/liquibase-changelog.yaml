@@ -3,3 +3,7 @@ databaseChangeLog:
   - include:
       file: 0001-employee.sql
       relativeToChangelogFile: true
+
+  - include:
+      file: 0002-employee_sequence.sql
+      relativeToChangelogFile: true
