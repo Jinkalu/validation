@@ -17,8 +17,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorVO> handleMethodArgsNotValidException(MethodArgumentNotValidException exception) {
-        List<ErrorVO> errors;
-        errors = exception.getBindingResult().getAllErrors().stream().map(objectError ->
+        List<ErrorVO> errors = exception.getBindingResult().getAllErrors().stream().map(objectError ->
                         ErrorVO.builder()
                                 .fieldName(((FieldError) objectError).getField())
                                 .message(List.of(Objects.requireNonNull(objectError.getDefaultMessage())))

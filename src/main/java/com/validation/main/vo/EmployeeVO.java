@@ -15,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 public class EmployeeVO {
     @NotEmpty(message = "name can not be empty")
     private String name;
-    @Email(message = "invalid email email id",
+    @Email(message = "invalid email id",
             regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z(\\d)-]+\\.[a-zA-Z(\\d)-.]+$")
     private String email;
 }

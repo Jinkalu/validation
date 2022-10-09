@@ -15,12 +15,11 @@ public class ServiceImpl implements Servicee {
     @Override
     public void addEmpl(EmployeeVO employeeVO) {
         if(employeeRepo.existsByNameAndEmail(employeeVO.getName(),employeeVO.getEmail())){
-            throw new ApiExceptionHandler("employee exists");
-        }else {
-            employeeRepo.save(Employee.builder()
+            throw new ApiExceptionHandler("an employee already exists with given email id : "+employeeVO.getEmail());
+        }
+        employeeRepo.save(Employee.builder()
                             .name(employeeVO.getName())
                             .email(employeeVO.getEmail())
                     .build());
-        }
     }
 }
