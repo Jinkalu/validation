@@ -14,12 +14,15 @@ public class ServiceImpl implements Servicee {
     private final EmployeeRepo employeeRepo;
     @Override
     public void addEmpl(EmployeeVO employeeVO) {
-        if(employeeRepo.existsByNameAndEmail(employeeVO.getName(),employeeVO.getEmail())){
-            throw new ApiExceptionHandler("an employee already exists with given email id : "+employeeVO.getEmail());
-        }
+        requestValidation(employeeVO);
         employeeRepo.save(Employee.builder()
                             .name(employeeVO.getName())
                             .email(employeeVO.getEmail())
                     .build());
+    }
+    private void requestValidation(EmployeeVO employeeVO){
+        if(employeeRepo.existsByEmail(employeeVO.getEmail())){
+            throw new ApiExceptionHandler("invalid.email","an employee exists with given email id : "+employeeVO.getEmail());
+        }
     }
 }
