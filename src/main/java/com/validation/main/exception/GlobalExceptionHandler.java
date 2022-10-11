@@ -16,18 +16,19 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorVO> handleMethodArgsNotValidException(MethodArgumentNotValidException exception) {
+    public ResponseEntity<List<ErrorVO>> handleMethodArgsNotValidException(MethodArgumentNotValidException exception) {
         List<ErrorVO> errors = exception.getBindingResult().getAllErrors().stream().map(objectError ->
                         ErrorVO.builder()
                                 .fieldName(((FieldError) objectError).getField())
                                 .message(List.of(Objects.requireNonNull(objectError.getDefaultMessage())))
                                 .build())
                 .collect(Collectors.toList());
-        return new ResponseEntity<>(errors.get(0), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(value = {ApiExceptionHandler.class})
-    public ResponseEntity<?> handleApiRequestException(ApiExceptionHandler e){
-        ApiException apiException= ApiException.builder()
+    public ResponseEntity<List<ApiException>> handleApiRequestException(ApiExceptionHandler e) {
+        ApiException apiException = ApiException.builder()
                 .code(e.getCode())
                 .message(e.getMessage())
                 .build();
