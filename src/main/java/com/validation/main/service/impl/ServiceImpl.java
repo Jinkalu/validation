@@ -22,7 +22,8 @@ public class ServiceImpl implements Servicee {
     }
     private void requestValidation(EmployeeVO employeeVO){
         if(employeeRepo.existsByEmail(employeeVO.getEmail())){
-            throw new ApiExceptionHandler("invalid.email","an employee exists with given email id : "+employeeVO.getEmail());
+            throw new ApiExceptionHandler("invalid.email",
+                    "an employee exists with given email id : "+employeeVO.getEmail());
         }
     }
 }

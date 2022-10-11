@@ -1,8 +1,6 @@
 package com.validation.main.exception;
 
-import lombok.Data;
 
-@Data
 public class ApiExceptionHandler extends RuntimeException{
 
    private final String code;
@@ -14,6 +12,12 @@ public class ApiExceptionHandler extends RuntimeException{
       this.message=message;
    }
 
+   public String getCode() {
+      return code;
+   }
 
-
+   @Override
+   public String getMessage() {
+      return message;
+   }
 }
