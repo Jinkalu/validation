@@ -1,6 +1,6 @@
 package com.validation.main.service.impl;
 
-import com.validation.main.EmployeeRepo;
+import com.validation.main.repo.EmployeeRepo;
 import com.validation.main.exception.ApiExceptionHandler;
 import com.validation.main.model.Employee;
 import com.validation.main.service.Servicee;
