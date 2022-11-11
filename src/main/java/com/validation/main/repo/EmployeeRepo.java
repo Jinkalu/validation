@@ -1,4 +1,4 @@
-package com.validation.main;
+package com.validation.main.repo;
 
 import com.validation.main.model.Employee;
 import com.validation.main.vo.EmployeeVO;

@@ -17,7 +17,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/emp/")
+@RequestMapping("emp/")
 @RequiredArgsConstructor
 public class Controller {
     private final Servicee servicee;
@@ -31,7 +31,7 @@ public class Controller {
                 .build());
     }
 
-    @PostMapping("/emp/get-all")
+    @PostMapping("get-all")
     public ResponseEntity<Map<String, Object>> getAllEmployee(@RequestBody EmployeeRequest employeeRequest) {
         return ResponseEntity.ok().body(servicee.getAllEmployee(employeeRequest));
     }
